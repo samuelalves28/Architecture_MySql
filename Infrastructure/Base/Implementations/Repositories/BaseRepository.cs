@@ -8,7 +8,7 @@ namespace Infrastructure.Base.Implementations.Repositories;
 
 public class BaseRepository<TModel>(DataBaseContext context, ILogger<BaseRepository<TModel>> logger) : IBaseRepository<TModel> where TModel : BaseModel
 {
-    protected readonly DbSet<TModel> _dbSet;
+    protected readonly DbSet<TModel> _dbSet = context.GetDbSet<TModel>();
 
     public async Task<List<TModel>> GetAsync(CancellationToken cancellationToken)
         => await _dbSet.ToListAsync(cancellationToken: cancellationToken);

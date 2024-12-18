@@ -11,7 +11,7 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
         => Ok(await cadProdutoRepository.GetAsync(cancellationToken));
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUsuarioAsync(string id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetUsuarioAsync(Guid id, CancellationToken cancellationToken)
         => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
 
     //[HttpPost]
