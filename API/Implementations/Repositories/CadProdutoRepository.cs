@@ -5,6 +5,6 @@ using Infrastructure.DataBase;
 
 namespace API.Implementations.Repositories;
 
-public class CadProdutoRepository(DataBaseContext context) : BaseRepository<CadProduto>(context), ICadProdutoRepository
+public class CadProdutoRepository(DataBaseContext context, ILogger<BaseRepository<CadProduto>> logger) : BaseRepository<CadProduto>(context, logger), ICadProdutoRepository
 {
 }

@@ -2,10 +2,10 @@
 
 public interface IBaseRepository<TModel>
 {
-    Task<IEnumerable<TModel>> GetAllAsync();
-    Task<TModel?> GetByIdAsync(object id);
-    Task AddAsync(TModel model);
-    Task UpdateAsync(TModel model);
-    Task DeleteAsync(TModel model);
+    Task<List<TModel>> GetAsync(CancellationToken cancellationToken);
+    Task<TModel?> GetAsync(object id, CancellationToken cancellationToken);
+    Task CreateAsync(TModel model, CancellationToken cancellationToken);
+    Task UpdateAsync(TModel model, CancellationToken cancellationToken);
+    Task DeleteAsync(TModel model, CancellationToken cancellationToken);
 }
 

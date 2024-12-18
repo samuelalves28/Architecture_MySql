@@ -7,13 +7,12 @@ namespace API.Controllers.CadProduto;
 public class HomeController(ILogger<HomeController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
 {
     [HttpGet("buscar")]
-    public async Task<IActionResult> GetUsuariosAsync()
-        => Ok(await cadProdutoRepository.GetAllAsync());
+    public async Task<IActionResult> GetUsuariosAsync(CancellationToken cancellationToken)
+        => Ok(await cadProdutoRepository.GetAsync(cancellationToken));
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUsuarioAsync(string id)
-        => Ok(await cadProdutoRepository.GetByIdAsync(id));
-
+    public async Task<IActionResult> GetUsuarioAsync(string id, CancellationToken cancellationToken)
+        => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
 
     //[HttpPost]
     //public async Task<IActionResult> CriarUsuariosAsync([FromBody] UpsertRequestViewModel requestViewModel)

@@ -2,33 +2,48 @@
 using Infrastructure.Base.Model;
 using Infrastructure.DataBase;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Infrastructure.Base.Implementations.Repositories;
 
-public class BaseRepository<TModel>(DataBaseContext context) : IBaseRepository<TModel> where TModel : BaseModel
+public class BaseRepository<TModel>(DataBaseContext context, ILogger<BaseRepository<TModel>> logger) : IBaseRepository<TModel> where TModel : BaseModel
 {
-    public async Task<IEnumerable<TModel>> GetAllAsync()
-        => await context.GetDbSet<TModel>().ToListAsync();
+    protected readonly DbSet<TModel> _dbSet;
 
-    public async Task<TModel?> GetByIdAsync(object id)
-        => await context.GetDbSet<TModel>().FindAsync(id);
+    public async Task<List<TModel>> GetAsync(CancellationToken cancellationToken)
+        => await _dbSet.ToListAsync(cancellationToken: cancellationToken);
 
-    public async Task AddAsync(TModel model)
+    public async Task<TModel?> GetAsync(object id, CancellationToken cancellationToken)
+        => await _dbSet.FindAsync(id, cancellationToken);
+
+    public async Task CreateAsync(TModel model, CancellationToken cancellationToken)
     {
-        await context.GetDbSet<TModel>().AddAsync(model);
-        await context.SaveChangesAsync();
+        await _dbSet.AddAsync(model, cancellationToken: cancellationToken);
+        await SaveChangesAsync(cancellationToken);
     }
 
-    public async Task UpdateAsync(TModel model)
+    public async Task UpdateAsync(TModel model, CancellationToken cancellationToken)
     {
-        context.GetDbSet<TModel>().Update(model);
-        await context.SaveChangesAsync();
+        _dbSet.Update(model);
+        await SaveChangesAsync(cancellationToken);
     }
 
-    public async Task DeleteAsync(TModel model)
+    public async Task DeleteAsync(TModel model, CancellationToken cancellationToken)
     {
-        context.GetDbSet<TModel>().Remove(model);
-        await context.SaveChangesAsync();
+        _dbSet.Remove(model);
+        await SaveChangesAsync(cancellationToken);
+    }
+
+    protected async Task SaveChangesAsync(CancellationToken cancellationToken)
+    {
+        try
+        {
+            await context.SaveChangesAsync(cancellationToken: cancellationToken);
+        }
+        catch (DbUpdateException ex)
+        {
+            logger.LogError(ex, "Error saving changes to the database");
+            throw new InvalidOperationException("Could not save changes to the database. See inner exception for details.", ex);
+        }
     }
 }
-
