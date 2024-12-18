@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<DataBaseContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!));
+builder.Services.AddDbContext<DataBaseContext>(options => options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")!, b => b.MigrationsAssembly("API")));
 builder.Services.AddRepositoryInjections();
 
 builder.Services.AddControllers();

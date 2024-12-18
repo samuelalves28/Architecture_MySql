@@ -1,0 +1,2 @@
+﻿Para criar uma migration você utiliza -> dotnet ef migrations add [NomeDaMigracao];
+Para atualizar uma migrations você utliza -> dotnet ef database update;
