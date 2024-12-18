@@ -3,15 +3,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers.CadProduto;
 
-[Route("api/adm/cad-cadastro")]
+[Route("api/adm/cad-produto")]
 public class HomeController(ILogger<HomeController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
 {
     [HttpGet("buscar")]
     public async Task<IActionResult> GetUsuariosAsync()
-    {
-        var users = await cadProdutoRepository.GetAllAsync();
-        return Ok(users);
-    }
+        => Ok(await cadProdutoRepository.GetAllAsync());
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetUsuarioAsync(string id)
+        => Ok(await cadProdutoRepository.GetByIdAsync(id));
 
 
     //[HttpPost]

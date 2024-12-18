@@ -4,8 +4,8 @@ public abstract class BaseModel
 {
     protected BaseModel()
     {
-        Id = Guid.NewGuid();
+        Id = Guid.NewGuid().ToString();
     }
 
-    public Guid Id { get; set; }
+    public string Id { get; set; }
 }
