@@ -16,25 +16,22 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
     public async Task<IActionResult> GetUsuarioAsync(Guid id, CancellationToken cancellationToken)
         => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
 
-    //[HttpPost]
-    //public async Task<IActionResult> CriarUsuariosAsync([FromBody] UpsertRequestViewModel requestViewModel)
-    //{
-    //    try
-    //    {
-    //        var entity = new Models.CadUsuario(requestViewModel.Nome,
-    //            requestViewModel.Email,
-    //            HashPassword.Create(requestViewModel.Senha));
+    [HttpPost]
+    public async Task<IActionResult> CriarUsuariosAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
+    {
+        try
+        {
+            var model = new Models.CadProduto(requestViewModel.Nome, requestViewModel.Descricao, requestViewModel.Preco, requestViewModel.Quantidade);
+            await cadProdutoRepository.CreateAsync(model, cancellationToken);
 
-    //        await cadProdutoRepository.CreateAsync(entity);
-
-    //        return Ok(new { message = "Cadastro feito com sucesso!" });
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return BadRequest($"Erro ao cadastrar o usuario.{ex}");
-    //        throw;
-    //    }
-    //}
+            return Ok(new { message = "Cadastro de produto feito com sucesso!" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro ao cadastrar o produto.{ex}");
+            throw;
+        }
+    }
 
     [HttpPut]
     public async Task<IActionResult> AtualizarUsuarioAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
@@ -46,11 +43,11 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
 
             await cadProdutoRepository.UpdateAsync(model, cancellationToken);
 
-            return Ok(new { message = "Cadastro editado com sucesso!" });
+            return Ok(new { message = "Cadastro de produto editado com sucesso!" });
         }
         catch (Exception ex)
         {
-            return BadRequest($"Erro ao editar o usuario.{ex}");
+            return BadRequest($"Erro ao editar o produto.{ex}");
             throw;
         }
     }
