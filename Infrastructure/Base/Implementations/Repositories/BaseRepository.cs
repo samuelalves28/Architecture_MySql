@@ -13,8 +13,8 @@ public class BaseRepository<TModel>(DataBaseContext context, ILogger<BaseReposit
     public async Task<List<TModel>> GetAsync(CancellationToken cancellationToken)
         => await _dbSet.ToListAsync(cancellationToken: cancellationToken);
 
-    public async Task<TModel?> GetAsync(object id, CancellationToken cancellationToken)
-        => await _dbSet.FindAsync(id, cancellationToken);
+    public async Task<TModel> GetAsync(Guid id, CancellationToken cancellationToken)
+        => await _dbSet.SingleAsync(w => w.Id == id, cancellationToken);
 
     public async Task CreateAsync(TModel model, CancellationToken cancellationToken)
     {
