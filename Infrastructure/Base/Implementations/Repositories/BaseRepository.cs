@@ -28,6 +28,13 @@ public class BaseRepository<TModel>(DataBaseContext context, ILogger<BaseReposit
         await SaveChangesAsync(cancellationToken);
     }
 
+    public async Task DeleteAsync(Guid id, CancellationToken cancellationToken)
+    {
+        var model = await _dbSet.SingleAsync(w => w.Id == id, cancellationToken);
+        _dbSet.Remove(model);
+        await SaveChangesAsync(cancellationToken);
+    }
+
     public async Task DeleteAsync(TModel model, CancellationToken cancellationToken)
     {
         _dbSet.Remove(model);

@@ -1,7 +1,6 @@
 ﻿using API.Controllers.CadProduto.ViewModel;
 using API.Implementations.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
 
 namespace API.Controllers.CadProduto;
 
@@ -52,18 +51,18 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
         }
     }
 
-    //[HttpDelete, Route("{id}")]
-    //public async Task<IActionResult> DeleteUsuarioAsync(Guid id)
-    //{
-    //    try
-    //    {
-    //        await cadProdutoRepository.DeleteAsync(id: id);
-    //        return Ok(new { message = "Cadastro removido com sucesso!" });
-    //    }
-    //    catch (Exception ex)
-    //    {
-    //        return BadRequest($"Erro ao remover o usuario. {ex.Message}");
-    //    }
-    //}
+    [HttpDelete, Route("{id}")]
+    public async Task<IActionResult> DeleteUsuarioAsync(Guid id, CancellationToken cancellationToken)
+    {
+        try
+        {
+            await cadProdutoRepository.DeleteAsync(id, cancellationToken);
+            return Ok(new { message = "Cadastro removido com sucesso!" });
+        }
+        catch (Exception ex)
+        {
+            return BadRequest($"Erro ao remover o usuario. {ex.Message}");
+        }
+    }
 }
 

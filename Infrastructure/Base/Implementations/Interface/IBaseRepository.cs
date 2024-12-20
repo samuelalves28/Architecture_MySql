@@ -6,6 +6,7 @@ public interface IBaseRepository<TModel>
     Task<TModel> GetAsync(Guid id, CancellationToken cancellationToken);
     Task CreateAsync(TModel model, CancellationToken cancellationToken);
     Task UpdateAsync(TModel model, CancellationToken cancellationToken);
+    Task DeleteAsync(Guid id, CancellationToken cancellationToken);
     Task DeleteAsync(TModel model, CancellationToken cancellationToken);
 }
 
