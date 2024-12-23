@@ -8,15 +8,15 @@ namespace API.Controllers.CadProduto;
 public class HomeController(ILogger<HomeController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
 {
     [HttpGet("buscar")]
-    public async Task<IActionResult> GetUsuariosAsync(CancellationToken cancellationToken)
+    public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
         => Ok(await cadProdutoRepository.GetAsync(cancellationToken));
 
     [HttpGet("{id}")]
-    public async Task<IActionResult> GetUsuarioAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetProdutoAsync(Guid id, CancellationToken cancellationToken)
         => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
 
     [HttpPost]
-    public async Task<IActionResult> CriarUsuariosAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
     {
         try
         {
@@ -33,7 +33,7 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
     }
 
     [HttpPut]
-    public async Task<IActionResult> AtualizarUsuarioAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
+    public async Task<IActionResult> UpdateAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
     {
         try
         {
@@ -52,7 +52,7 @@ public class HomeController(ILogger<HomeController> logger, ICadProdutoRepositor
     }
 
     [HttpDelete, Route("{id}")]
-    public async Task<IActionResult> DeleteUsuarioAsync(Guid id, CancellationToken cancellationToken)
+    public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
         try
         {
