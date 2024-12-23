@@ -1,13 +1,13 @@
 ﻿using Infrastructure.Base.Model;
 
 namespace API.Models;
-public class CadUsuarios(string nome, string email, DateTime dataNascimento, string passwordHash) : BaseModel
+public class CadUsuarios(string nome, string email, string passwordHash) : BaseModel
 {
     #region Campos
 
     public string Nome { get; private set; } = nome;
     public string Email { get; private set; } = email;
-    public DateTime DataNascimento { get; private set; } = dataNascimento;
+    public DateTime DataNascimento { get; private set; }
     public string PasswordHash { get; private set; } = passwordHash;
 
     #endregion

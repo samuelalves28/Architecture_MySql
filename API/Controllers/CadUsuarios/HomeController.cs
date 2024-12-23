@@ -1,11 +1,13 @@
 ﻿using API.Controllers.CadUsuarios.ViewModel;
 using API.Implementations.Interfaces;
+using Infrastructure.Utils;
 using Microsoft.AspNetCore.Mvc;
+using static Infrastructure.Base.Controller.AuthBaseController;
 
 namespace API.Controllers.CadUsuarios;
 
 [Route("api/adm/cad-usuarios")]
-public class HomeController(ILogger<HomeController> logger, ICadUsuariosRepository cadUsuariosRepository) : ControllerBase
+public class HomeController(ILogger<HomeController> logger, ICadUsuariosRepository cadUsuariosRepository) : AuthBSController
 {
     [HttpGet]
     public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
@@ -20,7 +22,9 @@ public class HomeController(ILogger<HomeController> logger, ICadUsuariosReposito
     {
         try
         {
-            var model = new Models.CadUsuarios(requestViewModel.Nome, requestViewModel.Email, requestViewModel.DataNascimento, requestViewModel.Senha);
+            var passwordHash = HashPassword.Create(requestViewModel.Senha);
+            var model = new Models.CadUsuarios(requestViewModel.Nome, requestViewModel.Email, passwordHash);
+
             await cadUsuariosRepository.CreateAsync(model, cancellationToken);
             return Ok("Cadastro de usuario feito com sucesso");
         }
@@ -36,8 +40,9 @@ public class HomeController(ILogger<HomeController> logger, ICadUsuariosReposito
     {
         try
         {
+            var passwordHash = HashPassword.Create(requestViewModel.Senha);
             var model = await cadUsuariosRepository.GetAsync(id: requestViewModel.Id!.Value, cancellationToken);
-            model.Update(requestViewModel.Nome, requestViewModel.Email, requestViewModel.DataNascimento, requestViewModel.Senha);
+            model.Update(requestViewModel.Nome, requestViewModel.Email, requestViewModel.DataNascimento, passwordHash);
 
             await cadUsuariosRepository.UpdateAsync(model, cancellationToken);
             return Ok("Cadastro de usuario atualizado com sucesso");
