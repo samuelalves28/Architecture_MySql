@@ -1,7 +1,7 @@
 ﻿using Infrastructure.Base.Model;
 
 namespace API.Models;
-public class CadUsuarios(string nome, string email, string passwordHash) : BaseModel
+public class CadUsuario(string nome, string email, string passwordHash) : BaseModel
 {
     #region Campos
 

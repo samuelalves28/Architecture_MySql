@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers;
 
 [Route("api/auth")]
-public class AuthController(IConfiguration configuration, ICadUsuariosRepository cadUsuariosRepository, Service service) : ControllerBase
+public class AuthController(IConfiguration configuration, ICadUsuarioRepository cadUsuariosRepository, Service service) : ControllerBase
 {
     [HttpPost("login")]
     public async Task<IActionResult> Login([FromBody] LoginRequestViewModel requestViewModel, CancellationToken cancellationToken)

@@ -8,7 +8,7 @@ namespace API.Services.JwtToken;
 
 public class Service
 {
-    public async Task<string> GenerateJwtToken(CadUsuarios cadUsuario, IConfiguration configuration)
+    public async Task<string> GenerateJwtToken(CadUsuario cadUsuario, IConfiguration configuration)
     {
         var claims = new[]
         {

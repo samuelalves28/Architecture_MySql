@@ -9,7 +9,7 @@ public static class DependencyInjectionConfiguration
     public static IServiceCollection AddRepositoryInjections(this IServiceCollection services)
     {
         services.AddScoped<ICadProdutoRepository, CadProdutoRepository>();
-        services.AddScoped<ICadUsuariosRepository, CadUsuariosRepository>();
+        services.AddScoped<ICadUsuarioRepository, CadUsuarioRepository>();
 
         services.AddScoped<Service>();
 

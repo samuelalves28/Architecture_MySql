@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers.CadProduto;
 
 [Route("api/adm/cad-produto")]
-public class HomeController(ILogger<HomeController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
+public class CadProdutoController(ILogger<CadProdutoController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
 {
     [HttpGet("buscar")]
     public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
