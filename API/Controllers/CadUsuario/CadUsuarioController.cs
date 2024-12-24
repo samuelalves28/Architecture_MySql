@@ -4,7 +4,7 @@ using Infrastructure.Utils;
 using Microsoft.AspNetCore.Mvc;
 using static Infrastructure.Base.Controller.AuthBaseController;
 
-namespace API.Controllers.CadUsuarios;
+namespace API.Controllers.CadUsuario;
 
 [Route("api/adm/cad-usuarios")]
 public class CadUsuarioController(ILogger<CadUsuarioController> logger, ICadUsuarioRepository cadUsuariosRepository) : AuthBSController

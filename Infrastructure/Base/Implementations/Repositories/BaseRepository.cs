@@ -52,5 +52,9 @@ public class BaseRepository<TModel>(DataBaseContext context, ILogger<BaseReposit
             logger.LogError(ex, "Error saving changes to the database");
             throw new InvalidOperationException("Could not save changes to the database. See inner exception for details.", ex);
         }
+        finally
+        {
+            await context.Database.CloseConnectionAsync();
+        }
     }
 }

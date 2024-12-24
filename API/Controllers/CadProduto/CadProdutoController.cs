@@ -1,11 +1,12 @@
 ﻿using API.Controllers.CadProduto.ViewModel;
 using API.Implementations.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using static Infrastructure.Base.Controller.AuthBaseController;
 
 namespace API.Controllers.CadProduto;
 
 [Route("api/adm/cad-produto")]
-public class CadProdutoController(ILogger<CadProdutoController> logger, ICadProdutoRepository cadProdutoRepository) : ControllerBase
+public class CadProdutoController(ILogger<CadProdutoController> logger, ICadProdutoRepository cadProdutoRepository) : AuthBSController
 {
     [HttpGet("buscar")]
     public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
