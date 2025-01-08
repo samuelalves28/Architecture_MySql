@@ -23,7 +23,9 @@ public static class AuthenticationJwtConfiguration
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = tokenConfiguration!.Issuer,
                     ValidAudience = tokenConfiguration.Audience,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.IssuerSigningKey))
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenConfiguration.IssuerSigningKey)),
+                    RequireExpirationTime = true,
+                    ClockSkew = TimeSpan.Zero
                 };
             });
 
