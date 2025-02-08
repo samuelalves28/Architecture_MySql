@@ -1,7 +1,7 @@
 ﻿using API.Implementations.Interfaces;
 using API.Models;
-using Infrastructure.Base.Implementations.Repositories;
-using Infrastructure.DataBase;
+using Infraestrutura.Base.Implementations.Repositories;
+using Infraestrutura.DataBase;
 
 namespace API.Implementations.Repositories;
 

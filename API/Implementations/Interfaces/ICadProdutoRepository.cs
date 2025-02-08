@@ -1,5 +1,5 @@
 ﻿using API.Models;
-using Infrastructure.Base.Implementations.Interface;
+using Infraestrutura.Base.Implementations.Interface;
 
 namespace API.Implementations.Interfaces;
 

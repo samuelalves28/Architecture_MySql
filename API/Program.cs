@@ -1,7 +1,7 @@
 using API.Configurations;
 using API.Configurations.AuthenticationJwtConfiguration;
 using API.Hub;
-using Infrastructure.DataBase;
+using Infraestrutura.DataBase;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

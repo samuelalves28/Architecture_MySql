@@ -1,8 +1,8 @@
 ﻿using API.Controllers.CadUsuarios.ViewModel;
 using API.Implementations.Interfaces;
-using Infrastructure.Utils;
+using Infraestrutura.Utils;
 using Microsoft.AspNetCore.Mvc;
-using static Infrastructure.Base.Controller.AuthBaseController;
+using static Infraestrutura.Base.Controller.AuthBaseController;
 
 namespace API.Controllers.CadUsuario;
 

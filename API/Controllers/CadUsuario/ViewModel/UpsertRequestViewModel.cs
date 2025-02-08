@@ -1,4 +1,4 @@
-﻿using Infrastructure.Base.ViewModel;
+﻿using Infraestrutura.Base.ViewModel;
 
 namespace API.Controllers.CadUsuarios.ViewModel;
 

@@ -1,7 +1,7 @@
 ﻿using API.Implementations.Interfaces;
 using API.Services.JwtToken;
 using API.ViewModels;
-using Infrastructure.Utils;
+using Infraestrutura.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

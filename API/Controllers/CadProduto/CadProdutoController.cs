@@ -1,7 +1,7 @@
 ﻿using API.Controllers.CadProduto.ViewModel;
 using API.Implementations.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using static Infrastructure.Base.Controller.AuthBaseController;
+using static Infraestrutura.Base.Controller.AuthBaseController;
 
 namespace API.Controllers.CadProduto;
 

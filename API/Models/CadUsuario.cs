@@ -1,4 +1,4 @@
-﻿using Infrastructure.Base.Model;
+﻿using Infraestrutura.Base.Model;
 
 namespace API.Models;
 public class CadUsuario(string nome, string email, string passwordHash) : BaseModel
