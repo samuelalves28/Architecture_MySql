@@ -12,9 +12,9 @@ public class CadProdutoController(ILogger<CadProdutoController> logger, ICadProd
     public async Task<IActionResult> GetAsync(CancellationToken cancellationToken)
         => Ok(await cadProdutoRepository.GetAsync(cancellationToken));
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetProdutoAsync(Guid id, CancellationToken cancellationToken)
-        => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
+    //[HttpGet("{id}")]
+    //public async Task<IActionResult> GetProdutoAsync(Guid id, CancellationToken cancellationToken)
+    //    => Ok(await cadProdutoRepository.GetAsync(id, cancellationToken));
 
     [HttpPost]
     public async Task<IActionResult> CreateAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
@@ -36,34 +36,36 @@ public class CadProdutoController(ILogger<CadProdutoController> logger, ICadProd
     [HttpPut]
     public async Task<IActionResult> UpdateAsync([FromBody] UpsertRequestViewModel requestViewModel, CancellationToken cancellationToken)
     {
-        try
-        {
-            var model = await cadProdutoRepository.GetAsync(id: requestViewModel.Id!.Value, cancellationToken);
-            model.Update(requestViewModel.Nome, requestViewModel.Descricao, requestViewModel.Preco);
+        //try
+        //{
+        //    var model = await cadProdutoRepository.GetAsync(id: requestViewModel.Id!.Value, cancellationToken);
+        //    model.Update(requestViewModel.Nome, requestViewModel.Descricao, requestViewModel.Preco);
 
-            await cadProdutoRepository.UpdateAsync(model, cancellationToken);
+        //    await cadProdutoRepository.UpdateAsync(model, cancellationToken);
 
-            return Ok(new { message = "Cadastro de produto editado com sucesso!" });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Erro ao editar o produto.{ex}");
-            throw;
-        }
+        //    return Ok(new { message = "Cadastro de produto editado com sucesso!" });
+        //}
+        //catch (Exception ex)
+        //{
+        //    return BadRequest($"Erro ao editar o produto.{ex}");
+        //    throw;
+        //}
+        return Ok();
     }
 
     [HttpDelete, Route("{id}")]
     public async Task<IActionResult> DeleteAsync(Guid id, CancellationToken cancellationToken)
     {
-        try
-        {
-            await cadProdutoRepository.DeleteAsync(id, cancellationToken);
-            return Ok(new { message = "Cadastro removido com sucesso!" });
-        }
-        catch (Exception ex)
-        {
-            return BadRequest($"Erro ao remover o usuario. {ex.Message}");
-        }
+        //try
+        //{
+        //    await cadProdutoRepository.DeleteAsync(id, cancellationToken);
+        //    return Ok(new { message = "Cadastro removido com sucesso!" });
+        //}
+        //catch (Exception ex)
+        //{
+        //    return BadRequest($"Erro ao remover o usuario. {ex.Message}");
+        //}
+        return Ok();
     }
 }
 

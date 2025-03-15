@@ -11,6 +11,9 @@ public static class DependencyInjectionConfiguration
         services.AddScoped<ICadProdutoRepository, CadProdutoRepository>();
         services.AddScoped<ICadUsuarioRepository, CadUsuarioRepository>();
 
+        services.AddScoped<ICadVisitanteRepository, CadVisitanteRepository>();
+        services.AddScoped<ICadEnderecoRepository, CadEnderecoRepository>();
+
         services.AddScoped<Service>();
 
         return services;
